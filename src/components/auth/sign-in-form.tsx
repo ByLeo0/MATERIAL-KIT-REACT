@@ -23,13 +23,13 @@ import { authClient } from '@/lib/auth/client';
 import { useUser } from '@/hooks/use-user';
 
 const schema = zod.object({
-  email: zod.string().min(1, { message: 'Email is required' }).email(),
-  password: zod.string().min(1, { message: 'Password is required' }),
+  email: zod.string().min(1, { message: 'El correo electronico es necesario' }).email(),
+  password: zod.string().min(1, { message: 'La contraseña es necesario' }),
 });
 
 type Values = zod.infer<typeof schema>;
 
-const defaultValues = { email: 'sofia@devias.io', password: 'Secret1' } satisfies Values;
+const defaultValues = { email: 'admin@admin.com', password: 'Admin1' } satisfies Values;
 
 export function SignInForm(): React.JSX.Element {
   const router = useRouter();
@@ -72,11 +72,11 @@ export function SignInForm(): React.JSX.Element {
   return (
     <Stack spacing={4}>
       <Stack spacing={1}>
-        <Typography variant="h4">Sign in</Typography>
+        <Typography variant="h4">Ingresar</Typography>
         <Typography color="text.secondary" variant="body2">
-          Don&apos;t have an account?{' '}
+          No tienes una cuenta?{' '}
           <Link component={RouterLink} href={paths.auth.signUp} underline="hover" variant="subtitle2">
-            Sign up
+            Registrarse
           </Link>
         </Typography>
       </Stack>
@@ -87,7 +87,7 @@ export function SignInForm(): React.JSX.Element {
             name="email"
             render={({ field }) => (
               <FormControl error={Boolean(errors.email)}>
-                <InputLabel>Email address</InputLabel>
+                <InputLabel>Correo electronico</InputLabel>
                 <OutlinedInput {...field} label="Email address" type="email" />
                 {errors.email ? <FormHelperText>{errors.email.message}</FormHelperText> : null}
               </FormControl>
@@ -98,7 +98,7 @@ export function SignInForm(): React.JSX.Element {
             name="password"
             render={({ field }) => (
               <FormControl error={Boolean(errors.password)}>
-                <InputLabel>Password</InputLabel>
+                <InputLabel>Contraseña</InputLabel>
                 <OutlinedInput
                   {...field}
                   endAdornment={
@@ -129,7 +129,7 @@ export function SignInForm(): React.JSX.Element {
           />
           <div>
             <Link component={RouterLink} href={paths.auth.resetPassword} variant="subtitle2">
-              Forgot password?
+              Olvidaste tu contraseña?
             </Link>
           </div>
           {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
@@ -141,7 +141,7 @@ export function SignInForm(): React.JSX.Element {
       <Alert color="warning">
         Use{' '}
         <Typography component="span" sx={{ fontWeight: 700 }} variant="inherit">
-          sofia@devias.io
+          admin@admin.com
         </Typography>{' '}
         with password{' '}
         <Typography component="span" sx={{ fontWeight: 700 }} variant="inherit">

@@ -29,7 +29,7 @@ export function AccountDetailsForm(): React.JSX.Element {
       }}
     >
       <Card>
-        <CardHeader subheader="The information can be edited" title="Profile" />
+        <CardHeader subheader="Esta información se puede editar" title="Perfil" />
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
@@ -40,8 +40,8 @@ export function AccountDetailsForm(): React.JSX.Element {
               }}
             >
               <FormControl fullWidth required>
-                <InputLabel>First name</InputLabel>
-                <OutlinedInput defaultValue="Sofia" label="First name" name="firstName" />
+                <InputLabel>Nombres</InputLabel>
+                <OutlinedInput defaultValue="Admin" label="First name" name="firstName" />
               </FormControl>
             </Grid>
             <Grid
@@ -51,8 +51,8 @@ export function AccountDetailsForm(): React.JSX.Element {
               }}
             >
               <FormControl fullWidth required>
-                <InputLabel>Last name</InputLabel>
-                <OutlinedInput defaultValue="Rivers" label="Last name" name="lastName" />
+                <InputLabel>Apellidos</InputLabel>
+                <OutlinedInput defaultValue="---" label="Last name" name="lastName" />
               </FormControl>
             </Grid>
             <Grid
@@ -62,8 +62,8 @@ export function AccountDetailsForm(): React.JSX.Element {
               }}
             >
               <FormControl fullWidth required>
-                <InputLabel>Email address</InputLabel>
-                <OutlinedInput defaultValue="sofia@devias.io" label="Email address" name="email" />
+                <InputLabel>Correo electronico</InputLabel>
+                <OutlinedInput defaultValue="admin@admin.com" label="Email address" name="email" />
               </FormControl>
             </Grid>
             <Grid
@@ -73,8 +73,8 @@ export function AccountDetailsForm(): React.JSX.Element {
               }}
             >
               <FormControl fullWidth>
-                <InputLabel>Phone number</InputLabel>
-                <OutlinedInput label="Phone number" name="phone" type="tel" />
+                <InputLabel>Celular</InputLabel>
+                <OutlinedInput label="numero de celular" name="phone" type="tel" />
               </FormControl>
             </Grid>
             <Grid
@@ -84,7 +84,7 @@ export function AccountDetailsForm(): React.JSX.Element {
               }}
             >
               <FormControl fullWidth>
-                <InputLabel>State</InputLabel>
+                <InputLabel>Ciudad</InputLabel>
                 <Select defaultValue="New York" label="State" name="state" variant="outlined">
                   {states.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
@@ -101,7 +101,7 @@ export function AccountDetailsForm(): React.JSX.Element {
               }}
             >
               <FormControl fullWidth>
-                <InputLabel>City</InputLabel>
+                <InputLabel>Pueblo o tu choza</InputLabel>
                 <OutlinedInput label="City" />
               </FormControl>
             </Grid>
@@ -109,7 +109,7 @@ export function AccountDetailsForm(): React.JSX.Element {
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button variant="contained">Save details</Button>
+          <Button variant="contained">Guardar detalles</Button>
         </CardActions>
       </Card>
     </form>

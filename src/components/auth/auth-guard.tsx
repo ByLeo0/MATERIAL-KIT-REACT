@@ -28,7 +28,7 @@ export function AuthGuard({ children }: AuthGuardProps): React.JSX.Element | nul
     }
 
     if (!user) {
-      logger.debug('[AuthGuard]: User is not logged in, redirecting to sign in');
+      logger.debug('[AuthGuard]: Usuario no autenticado, redirigiendo a la página de inicio de sesión');
       router.replace(paths.auth.signIn);
       return;
     }

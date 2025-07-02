@@ -34,7 +34,7 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
       <Box
         sx={{
           alignItems: 'center',
-          background: 'radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%)',
+          background: 'radial-gradient(50% 50% at 50% 50%,rgb(85, 159, 182) 0%,rgb(65, 97, 156) 100%)',
           color: 'var(--mui-palette-common-white)',
           display: { xs: 'none', lg: 'flex' },
           justifyContent: 'center',
@@ -44,20 +44,20 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
         <Stack spacing={3}>
           <Stack spacing={1}>
             <Typography color="inherit" sx={{ fontSize: '24px', lineHeight: '32px', textAlign: 'center' }} variant="h1">
-              Welcome to{' '}
+              Bienvenido {' '}
               <Box component="span" sx={{ color: '#15b79e' }}>
-                Devias Kit
+                Que tal Compra
               </Box>
             </Typography>
             <Typography align="center" variant="subtitle1">
-              A professional template that comes with ready-to-use MUI components.
+             Compra todos los productos que necesites de forma rápida y segura.
             </Typography>
           </Stack>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box
               component="img"
               alt="Widgets"
-              src="/assets/auth-widgets.png"
+              src="/assets/logoQTC.png"
               sx={{ height: 'auto', width: '100%', maxWidth: '600px' }}
             />
           </Box>

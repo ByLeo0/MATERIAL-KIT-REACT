@@ -46,13 +46,13 @@ export function IntegrationCard({ integration }: IntegrationCardProps): React.JS
         <Stack sx={{ alignItems: 'center' }} direction="row" spacing={1}>
           <ClockIcon fontSize="var(--icon-fontSize-sm)" />
           <Typography color="text.secondary" display="inline" variant="body2">
-            Updated {dayjs(integration.updatedAt).format('MMM D, YYYY')}
+            Descargas {dayjs(integration.updatedAt).format('D MMM , YYYY')}
           </Typography>
         </Stack>
         <Stack sx={{ alignItems: 'center' }} direction="row" spacing={1}>
           <DownloadIcon fontSize="var(--icon-fontSize-sm)" />
           <Typography color="text.secondary" display="inline" variant="body2">
-            {integration.installs} installs
+            {integration.installs} Instalados
           </Typography>
         </Stack>
       </Stack>

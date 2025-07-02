@@ -14,24 +14,40 @@ import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import type { ApexOptions } from 'apexcharts';
 
 import { Chart } from '@/components/core/chart';
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 export interface SalesProps {
   chartSeries: { name: string; data: number[] }[];
+  onDatasetChange: (key: string) => void;
   sx?: SxProps;
 }
 
-export function Sales({ chartSeries, sx }: SalesProps): React.JSX.Element {
+export function Sales({ chartSeries,onDatasetChange, sx }: SalesProps): React.JSX.Element {
   const chartOptions = useChartOptions();
+  const [selected, setSelected] = React.useState('thisYear');
+
+  const handleChange = (event: SelectChangeEvent) => {
+    const value = event.target.value;
+    setSelected(value);
+    onDatasetChange(value);
+  };
 
   return (
     <Card sx={sx}>
-      <CardHeader
+       <CardHeader
+        title="Ventas"
         action={
-          <Button color="inherit" size="small" startIcon={<ArrowClockwiseIcon fontSize="var(--icon-fontSize-md)" />}>
-            Sync
-          </Button>
+          <Select
+            value={selected}
+            onChange={handleChange}
+            size="small"
+            variant="outlined"
+            sx={{ minWidth: 140 }}
+          >
+            <MenuItem value="thisYear">Celular</MenuItem>
+            <MenuItem value="lastYear">Laptop</MenuItem>
+          </Select>
         }
-        title="Sales"
       />
       <CardContent>
         <Chart height={350} options={chartOptions} series={chartSeries} type="bar" width="100%" />
