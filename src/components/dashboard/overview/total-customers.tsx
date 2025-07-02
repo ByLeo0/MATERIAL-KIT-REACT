@@ -7,7 +7,7 @@ import type { SxProps } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { ArrowDownIcon } from '@phosphor-icons/react/dist/ssr/ArrowDown';
 import { ArrowUpIcon } from '@phosphor-icons/react/dist/ssr/ArrowUp';
-import { UsersIcon } from '@phosphor-icons/react/dist/ssr/Users';
+import { CaretDownIcon } from '@phosphor-icons/react/dist/ssr/CaretDown';
 
 export interface TotalCustomersProps {
   diff?: number;
@@ -32,7 +32,7 @@ export function TotalCustomers({ diff, trend, sx, value }: TotalCustomersProps):
               <Typography variant="h4">{value}</Typography>
             </Stack>
             <Avatar sx={{ backgroundColor: 'var(--mui-palette-success-main)', height: '56px', width: '56px' }}>
-              <UsersIcon fontSize="var(--icon-fontSize-lg)" />
+                <CaretDownIcon fontSize="var(--icon-fontSize-lg)" />
             </Avatar>
           </Stack>
           {diff ? (
@@ -44,7 +44,7 @@ export function TotalCustomers({ diff, trend, sx, value }: TotalCustomersProps):
                 </Typography>
               </Stack>
               <Typography color="text.secondary" variant="caption">
-                Since last month
+                Desde el último mes
               </Typography>
             </Stack>
           ) : null}

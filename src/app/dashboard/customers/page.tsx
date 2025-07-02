@@ -19,9 +19,9 @@ const customers = [
     id: 'USR-010',
     name: 'Xiaomi',
     avatar: '/assets/xiaomi.png',
-    email: 'xiaomi.com',
-    phone: '908-691-3242',
-    address: { city: 'China', country: 'China', state: 'beijin', street: '4158 Hedge Street' },
+    email: 'xiaomi@agencia.com',
+    phone: '123456789',
+    address: { city: 'Pekín', country: 'China', state: 'beijin', street: 'Xiaomi Science and Technology Park, Anningzhuang Road, Haidian, Pekín, China' },
     createdAt: dayjs().subtract(2, 'hours').toDate(),
   },
   {
@@ -29,17 +29,26 @@ const customers = [
     name: 'ASUS',
     avatar: '/assets/asus.jpg',
     email: 'asus@agencia.com',
-    phone: '415-907-2647',
-    address: { city: 'Carson City', country: 'USA', state: 'Nevada', street: '2188 Armbrester Drive' },
+    phone: '123456789',
+    address: { city: 'Taipéi', country: 'Taiwán', state: 'Taipéi', street: 'distrito de Beitou, Taipéi, Taiwán' },
     createdAt: dayjs().subtract(2, 'hours').toDate(),
   },
   {
     id: 'USR-008',
     name: 'Huawei',
     avatar: '/assets/huawei.png',
-    email: 'jie.yan.song@devias.io',
-    phone: '770-635-2682',
-    address: { city: 'North Canton', country: 'USA', state: 'Ohio', street: '4894 Lakeland Park Drive' },
+    email: 'huawei@agencia.com',
+    phone: '123456789',
+    address: { city: 'Shenzhen', country: 'China', state: 'Guangdong', street: 'Distrito de Longgang,Shenzhen' },
+    createdAt: dayjs().subtract(2, 'hours').toDate(),
+  },
+  {
+    id: 'USR-007',
+    name: 'Iphone',
+    avatar: '/assets/iphone.png',
+    email: 'iphone@agencia.com',
+    phone: '123456789',
+    address: { city: 'New York', country: 'USA', state: 'New York', street: 'Central park' },
     createdAt: dayjs().subtract(2, 'hours').toDate(),
   },
 ] satisfies Customer[];
@@ -54,7 +63,7 @@ export default function Page(): React.JSX.Element {
     <Stack spacing={3}>
       <Stack direction="row" spacing={3}>
         <Stack spacing={1} sx={{ flex: '1 1 auto' }}>
-          <Typography variant="h4">Clientes</Typography>
+          <Typography variant="h4">Proveedores</Typography>
           <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
             <Button color="inherit" startIcon={<UploadIcon fontSize="var(--icon-fontSize-md)" />}>
               Importar

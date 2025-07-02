@@ -7,13 +7,20 @@ import Stack from '@mui/material/Stack';
 import type { SxProps } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { ListBulletsIcon } from '@phosphor-icons/react/dist/ssr/ListBullets';
+import { ArrowUpIcon } from '@phosphor-icons/react/dist/ssr/ArrowUp';
+import { ArrowDownIcon } from '@phosphor-icons/react/dist/ssr/ArrowDown';
+import { UsersIcon } from '@phosphor-icons/react/dist/ssr/Users';
 
 export interface TasksProgressProps {
+  diff?: number;
+  trend: 'up' | 'down';
   sx?: SxProps;
-  value: number;
+  value: string;
 }
 
-export function TasksProgress({ value, sx }: TasksProgressProps): React.JSX.Element {
+export function TasksProgress({ diff, trend, sx, value }: TasksProgressProps): React.JSX.Element {
+  const TrendIcon = trend === 'up' ? ArrowUpIcon : ArrowDownIcon;
+  const trendColor = trend === 'up' ? 'var(--mui-palette-success-main)' : 'var(--mui-palette-error-main)';
   return (
     <Card sx={sx}>
       <CardContent>
@@ -23,17 +30,28 @@ export function TasksProgress({ value, sx }: TasksProgressProps): React.JSX.Elem
               <Typography color="text.secondary" gutterBottom variant="overline">
                 Solicitudes rechazadas
               </Typography>
-              <Typography variant="h4">{value}%</Typography>
+              <Typography variant="h4">{value}</Typography>
             </Stack>
-            <Avatar sx={{ backgroundColor: 'var(--mui-palette-warning-main)', height: '56px', width: '56px' }}>
-              <ListBulletsIcon fontSize="var(--icon-fontSize-lg)" />
+           <Avatar sx={{ backgroundColor: 'var(--mui-palette-success-main)', height: '56px', width: '56px' }}>
+              <UsersIcon fontSize="var(--icon-fontSize-lg)" />
             </Avatar>
           </Stack>
-          <div>
-            <LinearProgress value={value} variant="determinate" />
-          </div>
+          {diff ? (
+            <Stack sx={{ alignItems: 'center' }} direction="row" spacing={2}>
+              <Stack sx={{ alignItems: 'center' }} direction="row" spacing={0.5}>
+                <TrendIcon color={trendColor} fontSize="var(--icon-fontSize-md)" />
+                <Typography color={trendColor} variant="body2">
+                  {diff}%
+                </Typography>
+              </Stack>
+              <Typography color="text.secondary" variant="caption">
+                Desde el último mes
+              </Typography>
+            </Stack>
+          ) : null}
         </Stack>
       </CardContent>
     </Card>
   );
 }
+

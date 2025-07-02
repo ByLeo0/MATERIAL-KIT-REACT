@@ -18,16 +18,33 @@ export interface LogoProps {
   width?: number;
 }
 
-export function Logo({ color = 'dark', emblem, height = HEIGHT, width = WIDTH }: LogoProps): React.JSX.Element {
-  let url: string;
+export function Logo({
+  color = 'dark',
+  emblem,
+  height = HEIGHT,
+  width,
+}: {
+  color?: 'light' | 'dark';
+  emblem?: boolean;
+  height?: number | string;
+  width?: number | string;
+}): React.JSX.Element {
+  const url = '/assets/logoQTC.png'; // Imagen que usas
 
-  if (emblem) {
-    url = color === 'light' ? '/assets/logoQTC.png' : '/assets/logo-emblem--dark.svg';
-  } else {
-    url = color === 'light' ? '/assets/logoQTC.png' : '/assets/logo--dark.svg';
-  }
-
-  return <Box alt="logo" component="img" height={height} src={url} width={width} />;
+  return (
+    <Box
+      component="img"
+      src={url}
+      alt="logo"
+      height={height}
+      width={width || 'auto'}
+      sx={{
+        objectFit: 'contain',
+        display: 'block',
+        maxHeight: '70px', // opcional: limita altura máxima
+      }}
+    />
+  );
 }
 
 export interface DynamicLogoProps {

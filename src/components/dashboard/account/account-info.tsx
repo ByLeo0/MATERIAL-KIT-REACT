@@ -9,12 +9,12 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 const user = {
-  name: 'Sofia Rivers',
-  avatar: '/assets/asd.png',
+  name: 'Admin User',
+  avatar: '/assets/pablo.png',
   jobTitle: 'Senior Developer',
-  country: 'USA',
-  city: 'Los Angeles',
-  timezone: 'GTM-7',
+  country: 'PERU',
+  city: 'Lima',
+  timezone: 'GTM-5',
 } as const;
 
 export function AccountInfo(): React.JSX.Element {
@@ -39,7 +39,7 @@ export function AccountInfo(): React.JSX.Element {
       <Divider />
       <CardActions>
         <Button fullWidth variant="text">
-          Upload picture
+          Cambiar imagen
         </Button>
       </CardActions>
     </Card>

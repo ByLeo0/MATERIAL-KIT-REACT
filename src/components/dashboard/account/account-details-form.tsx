@@ -15,10 +15,10 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 
 const states = [
-  { value: 'alabama', label: 'Alabama' },
-  { value: 'new-york', label: 'New York' },
-  { value: 'san-francisco', label: 'San Francisco' },
-  { value: 'los-angeles', label: 'Los Angeles' },
+  { value: 'Lima', label: 'Lima' },
+  { value: 'cajamarca', label: 'Cajamarca' },
+  { value: 'piura', label: 'Piura' },
+  { value: 'ica', label: 'Ica' },
 ] as const;
 
 export function AccountDetailsForm(): React.JSX.Element {
@@ -85,7 +85,7 @@ export function AccountDetailsForm(): React.JSX.Element {
             >
               <FormControl fullWidth>
                 <InputLabel>Ciudad</InputLabel>
-                <Select defaultValue="New York" label="State" name="state" variant="outlined">
+                <Select defaultValue="Lima" label="State" name="state" variant="outlined">
                   {states.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}

@@ -58,7 +58,7 @@ class AuthClient {
 
     // We do not handle the API, so we'll check if the credentials match with the hardcoded ones.
     if (email !== 'admin@admin.com' || password !== 'admin') {
-      return { error: 'Invalid credentials' };
+      return { error: 'Credenciales inválidas' };
     }
 
     const token = generateToken();
