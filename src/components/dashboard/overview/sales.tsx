@@ -55,7 +55,7 @@ export function Sales({ chartSeries,onDatasetChange, sx }: SalesProps): React.JS
       <Divider />
       <CardActions sx={{ justifyContent: 'flex-end' }}>
         <Button color="inherit" endIcon={<ArrowRightIcon fontSize="var(--icon-fontSize-md)" />} size="small">
-          Overview
+          Ver más
         </Button>
       </CardActions>
     </Card>
