@@ -10,7 +10,7 @@ export function CompaniesFilters(): React.JSX.Element {
       <OutlinedInput
         defaultValue=""
         fullWidth
-        placeholder="Buscar integrantes"
+        placeholder="Buscar producto"
         startAdornment={
           <InputAdornment position="start">
             <MagnifyingGlassIcon fontSize="var(--icon-fontSize-md)" />

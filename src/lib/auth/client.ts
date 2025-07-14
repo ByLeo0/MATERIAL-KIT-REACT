@@ -1,4 +1,4 @@
-'use client';
+"use client"
 
 import type { User } from '@/types/user';
 
@@ -11,9 +11,9 @@ function generateToken(): string {
 const user = {
   id: 'USR-000',
   avatar: '/assets/avatar.png',
-  firstName: 'Sofia',
-  lastName: 'Rivers',
-  email: 'sofia@devias.io',
+  firstName: 'Pablo',
+  lastName: 'de los Backyardigans',
+  email: 'pablo@google.com',
 } satisfies User;
 
 export interface SignUpParams {
@@ -37,62 +37,104 @@ export interface ResetPasswordParams {
 }
 
 class AuthClient {
-  async signUp(_: SignUpParams): Promise<{ error?: string }> {
-    // Make API request
+async signInWithPassword(params: SignInWithPasswordParams): Promise<{ error?: string }> {
+  const { email, password } = params;
 
-    // We do not handle the API, so we'll just generate a token and store it in localStorage.
-    const token = generateToken();
-    localStorage.setItem('custom-auth-token', token);
+  try {
+    const res = await fetch('http://localhost:8080/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        contraseña: password, // importante: el backend espera "contraseña", no "password"
+      }),
+    });
 
-    return {};
-  }
+    const data = await res.json();
 
-  async signInWithOAuth(_: SignInWithOAuthParams): Promise<{ error?: string }> {
-    return { error: 'Social authentication not implemented' };
-  }
-
-  async signInWithPassword(params: SignInWithPasswordParams): Promise<{ error?: string }> {
-    const { email, password } = params;
-
-    // Make API request
-
-    // We do not handle the API, so we'll check if the credentials match with the hardcoded ones.
-    if (email !== 'admin@admin.com' || password !== 'admin') {
-      return { error: 'Credenciales inválidas' };
+    if (!res.ok || !data.success) {
+      return { error: data.message || 'Error en el inicio de sesión' };
     }
 
-    const token = generateToken();
-    localStorage.setItem('custom-auth-token', token);
+    // Guardar token y nombre en localStorage
+    localStorage.setItem('custom-auth-token', data.token);
+    localStorage.setItem('user-name', data.nombre);
 
     return {};
+  } catch (error) {
+    return { error: 'Error al conectar con el servidor' };
+  }
+}
+
+
+async getUser(): Promise<{ data?: User | null; error?: string }> {
+  const token = localStorage.getItem('custom-auth-token');
+
+  if (!token) {
+    return { data: null };
   }
 
-  async resetPassword(_: ResetPasswordParams): Promise<{ error?: string }> {
-    return { error: 'Password reset not implemented' };
-  }
+  try {
+    const res = await fetch('http://localhost:8080/api/auth/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  async updatePassword(_: ResetPasswordParams): Promise<{ error?: string }> {
-    return { error: 'Update reset not implemented' };
-  }
+    const data = await res.json();
 
-  async getUser(): Promise<{ data?: User | null; error?: string }> {
-    // Make API request
-
-    // We do not handle the API, so just check if we have a token in localStorage.
-    const token = localStorage.getItem('custom-auth-token');
-
-    if (!token) {
+    if (!res.ok || !data.success || !data.usuario) {
       return { data: null };
     }
 
-    return { data: user };
+    return {
+      data: {
+        id: data.usuario.idUsuario.toString(),
+        firstName: data.usuario.nombre,  // Aquí uso nombre del DTO
+        lastName: '',                    // No tienes apellido en el DTO, lo dejas vacío
+        email: data.usuario.email,
+        avatar: '/assets/avatar.png',
+      } satisfies User,
+    };
+  } catch (error) {
+    return { error: 'Error al validar el token' };
   }
+}
+
 
   async signOut(): Promise<{ error?: string }> {
-    localStorage.removeItem('custom-auth-token');
+const token = localStorage.getItem('custom-auth-token');
 
+  if (!token) {
     return {};
   }
+
+  try {
+    const res = await fetch('http://localhost:8080/api/auth/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ tokenSesion: token }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      return { error: data.message || 'Error al cerrar sesión' };
+    }
+
+    localStorage.removeItem('custom-auth-token');
+    localStorage.removeItem('user-name');
+    return {};
+  } catch (err) {
+    return { error: 'Error al conectar con el servidor' };
+  }
+  }
+
+  // Mantén los otros métodos igual o implementa según tu backend
 }
 
 export const authClient = new AuthClient();

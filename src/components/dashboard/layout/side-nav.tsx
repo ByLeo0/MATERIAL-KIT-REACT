@@ -65,13 +65,14 @@ export function SideNav(): React.JSX.Element {
 }
 
 function renderNavItems({ items = [], pathname }: { items?: NavItemConfig[]; pathname: string }): React.JSX.Element {
-  const children = items.reduce((acc: React.ReactNode[], curr: NavItemConfig): React.ReactNode[] => {
-    const { key, ...item } = curr;
+const children = items.reduce((acc: React.ReactNode[], curr: NavItemConfig, index: number): React.ReactNode[] => {
+  const { key, ...item } = curr;
 
-    acc.push(<NavItem key={key} pathname={pathname} {...item} />);
+  acc.push(<NavItem key={`${key}-${index}`} pathname={pathname} {...item} />);
 
-    return acc;
-  }, []);
+  return acc;
+}, []);
+
 
   return (
     <Stack component="ul" spacing={1} sx={{ listStyle: 'none', m: 0, p: 0 }}>

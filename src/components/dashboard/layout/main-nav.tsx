@@ -16,11 +16,13 @@ import { usePopover } from '@/hooks/use-popover';
 
 import { MobileNav } from './mobile-nav';
 import { UserPopover } from './user-popover';
+import { useUser } from '@/hooks/use-user';
 
 export function MainNav(): React.JSX.Element {
   const [openNav, setOpenNav] = React.useState<boolean>(false);
 
   const userPopover = usePopover<HTMLDivElement>();
+  const { user } = useUser();
 
   return (
     <React.Fragment>
@@ -67,10 +69,13 @@ export function MainNav(): React.JSX.Element {
                 </IconButton>
               </Badge>
             </Tooltip>
-            <Avatar 
-              onClick={userPopover.handleOpen}
-              ref={userPopover.anchorRef}
-              sx={{ cursor: 'pointer' }} > A</Avatar>
+<Avatar
+  onClick={userPopover.handleOpen}
+  ref={userPopover.anchorRef}
+  sx={{ cursor: 'pointer', bgcolor: 'primary.main', color: 'white' }}
+>
+  {user?.firstName?.[0]?.toUpperCase() || 'U'}
+</Avatar>
           </Stack>
         </Stack>
       </Box>

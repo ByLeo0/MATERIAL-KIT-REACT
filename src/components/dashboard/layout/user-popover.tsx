@@ -24,7 +24,7 @@ export interface UserPopoverProps {
 }
 
 export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): React.JSX.Element {
-  const { checkSession } = useUser();
+const { user, checkSession } = useUser();
 
   const router = useRouter();
 
@@ -57,11 +57,12 @@ export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): Reac
       slotProps={{ paper: { sx: { width: '240px' } } }}
     >
       <Box sx={{ p: '16px 20px ' }}>
-        <Typography variant="subtitle1">Admin</Typography>
+        <Typography variant="subtitle1">{user?.firstName || 'Usuario'}</Typography>
         <Typography color="text.secondary" variant="body2">
-          admin@admin.com
-        </Typography>
+          {user?.email || 'usuario@ejemplo.com'}
+        </Typography>     
       </Box>
+
       <Divider />
       <MenuList disablePadding sx={{ p: '8px', '& .MuiMenuItem-root': { borderRadius: 1 } }}>
         <MenuItem component={RouterLink} href={paths.dashboard.settings} onClick={onClose}>
